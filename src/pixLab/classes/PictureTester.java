@@ -92,7 +92,7 @@ public class PictureTester
   
   public static void testMirrorVerticalTopToBottom()
   {
-    Picture caterpillar = new Picture("caterpillar.jpg");
+    Picture caterpillar = new Picture("snowman.jpg");
     caterpillar.explore();
     caterpillar.mirrorVerticalTopToBottom();
     caterpillar.explore();
@@ -156,7 +156,7 @@ public class PictureTester
 	//testMaxRed();
 	//testMaxGreen();
     //testNegate();
-    testGrayscale();
+    //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
     //testMirrorVerticalRightToLeft();
@@ -164,7 +164,7 @@ public class PictureTester
     //testRandomColor();
 	//testRightRed();
     //testMirrorTemple();
-    //testMirrorArms();
+    testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();

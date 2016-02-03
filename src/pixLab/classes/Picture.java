@@ -182,6 +182,22 @@ public class Picture extends SimplePicture
 	      }
 	    }
   }
+  public void Negate()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	    	  int currentRed;
+	    	  int currentBlue;
+	    	  int currentYellow;
+	    	  int newRed;
+	    	  int newBlue;
+	    	  int newYellow;
+	      }
+	    }
+  }
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -201,6 +217,45 @@ public class Picture extends SimplePicture
       }
     } 
   }
+  
+  public void mirrorVerticalTopToBottom()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	    Pixel topPixel = null;
+	    Pixel bottomPixel = null;
+	    int width = pixels[0].length;
+	    int height = pixels.length;
+	    for (int row = 0; row < pixels.length; row++)
+	    {
+	      for (int col = 0; col < width; col++)
+	      {
+	        topPixel = pixels[row][col];
+	        bottomPixel = pixels[height - 1 -row][col];
+	        bottomPixel.setColor(topPixel.getColor());
+	      }
+	    } 
+	  
+  }
+  
+  public void mirrorVerticalBottomToTop()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	    Pixel topPixel = null;
+	    Pixel bottomPixel = null;
+	    int width = pixels[0].length;
+	    int height = pixels.length;
+	    for (int row = 0; row < pixels.length; row++)
+	    {
+	      for (int col = 0; col < width; col++)
+	      {
+	        topPixel = pixels[height - 1 -row][col];
+	        bottomPixel = pixels[row][col];
+	        bottomPixel.setColor(topPixel.getColor());
+	      }
+	    } 
+	  
+
+	  }
 
   //implements max red to only the right side of the image
   public void rightRed()
@@ -258,21 +313,6 @@ public class Picture extends SimplePicture
 		  }
 	  }
   }
-  public void mirrorVerticalTopToBottom()
-  {
-	  Pixel [][] pixels = this.getPixels2D();
-	  Pixel leftPixel = null;
-	  Pixel rightPixel = null;
-	  int pictureWidth = pixels[0].length;
-	  for(int row = pixels[0].length - 1; row > pictureWidth / 2; row--)	  {
-		  for(int col = 0; col<pixels.length; col++)
-		  {
-			  rightPixel = pixels [col][row];
-			  leftPixel = pixels[col][(pictureWidth/2) - (row -pictureWidth/2)];
-			  leftPixel.setColor(rightPixel.getColor());
-		  }
-	  }
-  }
   
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
@@ -300,7 +340,7 @@ public class Picture extends SimplePicture
 
   public void mirrorArms()
   {
-    int mirrorPoint = 170;
+    int mirrorPoint = 298;
     Pixel leftPixel = null;
     Pixel rightPixel = null;
     int count = 0;
@@ -314,8 +354,7 @@ public class Picture extends SimplePicture
       {
         
         leftPixel = pixels[row][col];      
-        rightPixel = pixels[row]                       
-                         [mirrorPoint - col + mirrorPoint];
+        rightPixel = pixels[mirrorPoint - row][col];
         rightPixel.setColor(leftPixel.getColor());
       }
     }
@@ -404,13 +443,14 @@ public class Picture extends SimplePicture
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.mirrorVerticalRightToLeft();
-    beach.Grayscale();
-    beach.maxBlue();
-    beach.createCollage();
-    beach.rightRed();
+    beach.mirrorVerticalBottomToTop();
+    //beach.mirrorVerticalRightToLeft();
+    //beach.Grayscale();
+    //beach.maxBlue();
+    //beach.createCollage();
+    //beach.rightRed();
     beach.explore();
-    beach.write("5FilterBeach.jpeg");
+    //beach.write("5FilterBeach.jpeg");
     
   }
   
